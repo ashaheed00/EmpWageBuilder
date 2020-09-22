@@ -1,4 +1,4 @@
-// Version UC3
+// Version UC4
 
 public class EmpWageBuilder {
 
@@ -13,10 +13,17 @@ public class EmpWageBuilder {
 
 		empCheck = (short) (Math.random() * 10 % 3);
 
-		if (empCheck == 1)
+		switch (empCheck) {
+		case IS_PART_TIME:
 			empHours = 4;
-		else if (empCheck == 2)
+			break;
+		case IS_FULL_TIME:
 			empHours = 8;
+			break;
+		default:
+			empHours = 0;
+		}
+
 		empWage = empHours * EMP_RATE_PER_HOUR;
 		System.out.println("Emp Wage: " + empWage);
 	}
