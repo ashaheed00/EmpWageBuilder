@@ -1,4 +1,4 @@
-// Version UC5
+// Version UC6
 
 public class EmpWageBuilder {
 
@@ -7,13 +7,16 @@ public class EmpWageBuilder {
 	static short empCheck;
 	static final int EMP_RATE_PER_HOUR = 20;
 	static final int NO_OF_WORKING_DAYS = 20;
+	static final int MAX_WORK_HOUR = 100;
 	static short empHours = 0;
 	static int empWage = 0;
 	static int totalEmpWage = 0;
 
 	public static void main(String[] args) {
+		int totalWorkingDays = 0;
+		int totalWorkingHours = 0;
 
-		for (int day = 1; day <= NO_OF_WORKING_DAYS; day++) {
+		while (totalWorkingDays++ < NO_OF_WORKING_DAYS && totalWorkingHours < MAX_WORK_HOUR) {
 			empCheck = (short) (Math.random() * 10 % 3);
 
 			switch (empCheck) {
@@ -27,10 +30,13 @@ public class EmpWageBuilder {
 				empHours = 0;
 			}
 
-			empWage = empHours * EMP_RATE_PER_HOUR;
-			totalEmpWage += empWage;
-			System.out.println("Emp Wage Day " + day + ": " + empWage);
+			totalWorkingHours += empHours;
+			System.out
+					.println("Total Working Day: " + totalWorkingDays + " & Total Working Hours: " + totalWorkingHours);
 		}
+
+		empWage = totalWorkingHours * EMP_RATE_PER_HOUR;
+		totalEmpWage += empWage;
 		System.out.println("Total Emp Wage: " + totalEmpWage);
 	}
 }
