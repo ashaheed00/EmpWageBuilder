@@ -1,4 +1,4 @@
-// Version UC12
+// Version UC13
 
 // Two classes and an Interface are added one after another in a single file to push into git
 
@@ -93,7 +93,10 @@ public class EmpWageBuilder implements IComputeEmpWage {
 
 	@Override
 	public void computeEmpWage() {
-		// will be added in the UC13 branch
+		for (CompanyEmpWage companyEmpWage : companyEmpWageList) {
+			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+			System.out.println(companyEmpWage);
+		}
 	}
 
 	@Override
