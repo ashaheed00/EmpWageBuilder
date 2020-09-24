@@ -1,4 +1,4 @@
-// Version UC13
+// Version UC14
 
 // Two classes and an Interface are added one after another in a single file to push into git
 
@@ -101,8 +101,7 @@ public class EmpWageBuilder implements IComputeEmpWage {
 
 	@Override
 	public int getTotalWage(String company) {
-		// TODO Auto-generated method stub
-		return 0;
+		return companyEmpWageMap.get(company).totalEmpWage;
 	}
 
 	public static void main(String[] args) {
@@ -110,5 +109,9 @@ public class EmpWageBuilder implements IComputeEmpWage {
 		empWageBuilder.addCompanyEmpWage("Dexon", 50, 22, 100);
 		empWageBuilder.addCompanyEmpWage("BlackCap", 150, 18, 110);
 		empWageBuilder.computeEmpWage();
+
+		// query to get total wage of company Dexon
+		System.out.println("Total Wage for Dexon(using query): " 
+								+ empWageBuilder.getTotalWage("Dexon"));
 	}
 }
