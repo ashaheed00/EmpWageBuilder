@@ -1,18 +1,17 @@
-// Version UC7
+// Version UC8
 
-public class EmpWageBuilderClassMethod {
-
+public class EmpWageBuilderMultiCompany {
+	
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
-	public static final int EMP_RATE_PER_HOUR = 20;
-	public static final int NUMBER_OF_WORKING_DAYS = 20;
-	public static final int MAX_HRS_IN_MONTH = 100;
-
-	public static int computeEmpWage() {
+	
+	public static int computeEmpWage(String company, int empRatePerHour, 
+									 int numOfWorkingDays, int maxHoursPerMonth) {
+		
 		int empHours = 0, totalWorkingHours = 0, totalWorkingDays = 0;
 
-		while (totalWorkingDays++ < NUMBER_OF_WORKING_DAYS &&
-				totalWorkingHours < MAX_HRS_IN_MONTH) {
+		while (totalWorkingDays++ < numOfWorkingDays &&
+				totalWorkingHours < maxHoursPerMonth) {
 			short empCheck = (short) (Math.random() * 10 % 3);
 
 			switch (empCheck) {
@@ -31,13 +30,15 @@ public class EmpWageBuilderClassMethod {
 								" & Total Working Hours: " + totalWorkingHours);
 		}
 		
-		int totalEmpWage = totalWorkingHours * EMP_RATE_PER_HOUR;
-		System.out.println("Total Emp Wage: " + totalEmpWage);
+		int totalEmpWage = totalWorkingHours * empRatePerHour;
+		System.out.println("Total Emp Wage for company " + company + ": " + totalEmpWage);
 		
 		return totalEmpWage;
 	}
-	
+
 	public static void main(String[] args) {
-		computeEmpWage();
+		computeEmpWage("Dexon", 50, 22, 100);
+		System.out.println("***********************************************");
+		computeEmpWage("BlackCap", 150, 18, 110);
 	}
 }
