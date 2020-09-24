@@ -36,8 +36,8 @@ public class EmpWageBuilderObject {
 			}
 
 			totalWorkingHours += empHours;
+			System.out.println("Total Working Day: " + totalWorkingDays + " & Total Working Hours: " + totalWorkingHours);
 		}
-		System.out.println("Total Working Day: " + totalWorkingDays + " & Total Working Hours: " + totalWorkingHours);
 		totalEmpWage = totalWorkingHours * empRatePerHour;
 	}
 
