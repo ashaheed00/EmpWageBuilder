@@ -1,23 +1,19 @@
-// Version UC6
+// Version UC7
 
-public class EmpWageBuilder {
+public class EmpWageBuilderClassMethod {
 
-	static final short IS_PART_TIME = 1;
-	static final short IS_FULL_TIME = 2;
-	static short empCheck;
-	static final int EMP_RATE_PER_HOUR = 20;
-	static final int NO_OF_WORKING_DAYS = 20;
-	static final int MAX_WORK_HOUR = 100;
-	static short empHours = 0;
-	static int empWage = 0;
-	static int totalEmpWage = 0;
+	public static final int IS_PART_TIME = 1;
+	public static final int IS_FULL_TIME = 2;
+	public static final int EMP_RATE_PER_HOUR = 20;
+	public static final int NUMBER_OF_WORKING_DAYS = 20;
+	public static final int MAX_HRS_IN_MONTH = 100;
 
-	public static void main(String[] args) {
-		int totalWorkingDays = 0;
-		int totalWorkingHours = 0;
+	public static int computeEmpWage() {
+		int empHours = 0, totalWorkingHours = 0, totalWorkingDays = 0;
 
-		while (totalWorkingDays++ < NO_OF_WORKING_DAYS && totalWorkingHours < MAX_WORK_HOUR) {
-			empCheck = (short) (Math.random() * 10 % 3);
+		while (totalWorkingDays++ < NUMBER_OF_WORKING_DAYS &&
+				totalWorkingHours < MAX_HRS_IN_MONTH) {
+			short empCheck = (short) (Math.random() * 10 % 3);
 
 			switch (empCheck) {
 			case IS_PART_TIME:
@@ -31,11 +27,17 @@ public class EmpWageBuilder {
 			}
 
 			totalWorkingHours += empHours;
-			System.out.println("Total Working Day: " + totalWorkingDays + " & Total Working Hours: " + totalWorkingHours);
+			System.out.println("Total Working Day: " + totalWorkingDays + 
+								" & Total Working Hours: " + totalWorkingHours);
 		}
-
-		empWage = totalWorkingHours * EMP_RATE_PER_HOUR;
-		totalEmpWage += empWage;
+		
+		int totalEmpWage = totalWorkingHours * EMP_RATE_PER_HOUR;
 		System.out.println("Total Emp Wage: " + totalEmpWage);
+		
+		return totalEmpWage;
+	}
+	
+	public static void main(String[] args) {
+		computeEmpWage();
 	}
 }
