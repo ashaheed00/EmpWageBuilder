@@ -1,4 +1,4 @@
-// Version UC11
+// Version UC12
 
 // Two classes and an Interface are added one after another in a single file to push into git
 
@@ -41,23 +41,28 @@ public class CompanyEmpWage {
 
 // This class contains main method
 
-public class EmpWageBuilderArray implements IComputeEmpWage{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class EmpWageBuilder implements IComputeEmpWage {
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
-	private int numOfCompany = 0;
-	private CompanyEmpWage[] companyWageArray;
+	private ArrayList<CompanyEmpWage> companyEmpWageList;
+	private Map<String, CompanyEmpWage> companyEmpWageMap;
 
-	public EmpWageBuilderArray() {
-		companyWageArray = new CompanyEmpWage[5];
+	public EmpWageBuilder() {
+		companyEmpWageList = new ArrayList<>();
+		companyEmpWageMap = new HashMap<>();
 	}
-	
+
 	@Override
 	public void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
-		companyWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays,
-				maxHoursPerMonth);
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
 
-		numOfCompany++;
+		companyEmpWageList.add(companyEmpWage);
+		companyEmpWageMap.put(company, companyEmpWage);
 	}
 
 	public int computeEmpWage(CompanyEmpWage companyEmpWage) {
@@ -85,26 +90,22 @@ public class EmpWageBuilderArray implements IComputeEmpWage{
 
 		return totalWorkingHours * companyEmpWage.empRatePerHour;
 	}
-	
+
 	@Override
 	public void computeEmpWage() {
-		for (int i = 0; i < numOfCompany; i++) {
-			companyWageArray[i].setTotalEmpWage(this.computeEmpWage(companyWageArray[i]));
-			System.out.println(companyWageArray[i]);
-			System.out.println();
-		}
+		// will be added in the UC13 branch
 	}
 
-	public static void main(String[] args) {
-		EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
-		empWageBuilder.addCompanyEmpWage("Dexon", 50, 22, 100);
-		empWageBuilder.addCompanyEmpWage("BlackCap", 150, 18, 110);
-		empWageBuilder.computeEmpWage();
-	}
-
-		@Override
+	@Override
 	public int getTotalWage(String company) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public static void main(String[] args) {
+		EmpWageBuilder empWageBuilder = new EmpWageBuilder();
+		empWageBuilder.addCompanyEmpWage("Dexon", 50, 22, 100);
+		empWageBuilder.addCompanyEmpWage("BlackCap", 150, 18, 110);
+		empWageBuilder.computeEmpWage();
 	}
 }
